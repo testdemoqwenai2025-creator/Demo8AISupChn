@@ -1,0 +1,76 @@
+{
+  "suppliers": [
+    {
+      "id": "cmtxd53o9000cns2leyn2ma9s",
+      "supplierCode": "SUP-005",
+      "name": "Shenzhen Electronics Co",
+      "region": "APAC",
+      "country": "China",
+      "tier": 2,
+      "riskScore": 85,
+      "status": "critical_review",
+      "esgRating": "E",
+      "lastAudit": null
+    },
+    {
+      "id": "cmtxd53o70008ns2l5uz5ro8y",
+      "supplierCode": "SUP-001",
+      "name": "TechComp Industries Ltd",
+      "region": "APAC",
+      "country": "Vietnam",
+      "tier": 1,
+      "riskScore": 72,
+      "status": "active",
+      "esgRating": "B",
+      "lastAudit": null
+    },
+    {
+      "id": "cmtxd53o8000ans2l6kyn9jaf",
+      "supplierCode": "SUP-003",
+      "name": "AsiaLogistics Solutions Pte",
+      "region": "APAC",
+      "country": "Singapore",
+      "tier": 2,
+      "riskScore": 45,
+      "status": "under_review",
+      "esgRating": "C",
+      "lastAudit": null
+    },
+    {
+      "id": "cmtxd53o70009ns2llytn7zla",
+      "supplierCode": "SUP-002",
+      "name": "EuroParts Manufacturing GmbH",
+      "region": "EMEA",
+      "country": "Germany",
+      "tier": 1,
+      "riskScore": 28,
+      "status": "active",
+      "esgRating": "A",
+      "lastAudit": null
+    },
+    {
+      "id": "cmtxd53o8000bns2lgxmcvnzx",
+      "supplierCode": "SUP-004",
+      "name": "Global Components Inc",
+      "region": "Americas",
+      "country": "USA",
+      "tier": 1,
+      "riskScore": 18,
+      "status": "active",
+      "esgRating": "A",
+      "lastAudit": null
+    },
+    {
+      "id": "cmtxd53o9000dns2l0eyw58sm",
+      "supplierCode": "SUP-006",
+      "name": "Nordic Materials AB",
+      "region": "EMEA",
+      "country": "Sweden",
+      "tier": 1,
+      "riskScore": 12,
+      "status": "active",
+      "esgRating": "A",
+      "lastAudit": null
+    }
+  ]
+}

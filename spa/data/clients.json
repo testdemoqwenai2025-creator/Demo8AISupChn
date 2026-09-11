@@ -1,0 +1,60 @@
+{
+  "clients": [
+    {
+      "id": "cmtxd53o30000ns2l6fxlypqd",
+      "name": "Global Logistics Corp",
+      "email": "ops@globallogistics.com",
+      "country": "United States",
+      "region": "Americas"
+    },
+    {
+      "id": "cmtxd53o40001ns2luq2zrxeh",
+      "name": "European Manufacturing Group",
+      "email": "procurement@euro-mfg.de",
+      "country": "Germany",
+      "region": "EMEA"
+    },
+    {
+      "id": "cmtxd53o40002ns2ljsrlca70",
+      "name": "Pacific Trade Partners",
+      "email": "contact@pacifictrade.sg",
+      "country": "Singapore",
+      "region": "APAC"
+    },
+    {
+      "id": "cmtxd53o50003ns2l9o3hiexn",
+      "name": "Nordic Energy Solutions",
+      "email": "supply@nordicenergy.no",
+      "country": "Norway",
+      "region": "EMEA"
+    },
+    {
+      "id": "cmtxd53o50004ns2l3vmm2ijt",
+      "name": "Mediterranean Foods Ltd",
+      "email": "orders@medfoods.gr",
+      "country": "Greece",
+      "region": "EMEA"
+    },
+    {
+      "id": "cmtxd53o60005ns2lrw7e2jbb",
+      "name": "Atlas Pharma Distribution",
+      "email": "supplychain@atlaspharma.co.uk",
+      "country": "United Kingdom",
+      "region": "EMEA"
+    },
+    {
+      "id": "cmtxd53o60006ns2lc2hiyg6x",
+      "name": "Sahara Minerals & Mining",
+      "email": "logistics@saharaminerals.ma",
+      "country": "Morocco",
+      "region": "EMEA"
+    },
+    {
+      "id": "cmtxd53o60007ns2lky1kfhi1",
+      "name": "Andean Textile Mills",
+      "email": "purchasing@andeantextiles.co",
+      "country": "Colombia",
+      "region": "LATAM"
+    }
+  ]
+}

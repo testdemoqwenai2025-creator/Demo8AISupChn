@@ -1,0 +1,17 @@
+{
+  "orders": {
+    "total": 12,
+    "pending": 3,
+    "paid": 3
+  },
+  "tenders": {
+    "active": 5
+  },
+  "suppliers": {
+    "total": 6
+  },
+  "revenue": {
+    "total": 303000
+  },
+  "generatedAt": "2026-09-11T20:14:59.191Z"
+}

@@ -1,0 +1,69 @@
+{
+  "tenders": [
+    {
+      "id": "cmtxd53op0024ns2lwp48doub",
+      "tenderNumber": "TND-20003",
+      "title": "APAC Manufacturing Digital Twin",
+      "description": null,
+      "category": "Private",
+      "region": "APAC",
+      "estimatedValue": 1850000,
+      "currency": "USD",
+      "status": "open",
+      "deadline": "2026-11-10T19:42:34.729Z",
+      "createdAt": "2026-09-11T19:42:34.730Z"
+    },
+    {
+      "id": "cmtxd53op0025ns2l91y2do89",
+      "tenderNumber": "TND-20004",
+      "title": "Nordic Green Energy Supply Chain",
+      "description": null,
+      "category": "Private",
+      "region": "EMEA",
+      "estimatedValue": 950000,
+      "currency": "USD",
+      "status": "open",
+      "deadline": "2026-10-02T19:42:34.729Z",
+      "createdAt": "2026-09-11T19:42:34.730Z"
+    },
+    {
+      "id": "cmtxd53oq0026ns2lwlor5618",
+      "tenderNumber": "TND-20005",
+      "title": "LATAM Mining Equipment Procurement",
+      "description": null,
+      "category": "Government",
+      "region": "LATAM",
+      "estimatedValue": 3200000,
+      "currency": "USD",
+      "status": "open",
+      "deadline": "2026-12-10T19:42:34.730Z",
+      "createdAt": "2026-09-11T19:42:34.730Z"
+    },
+    {
+      "id": "cmtxd53op0023ns2l6i998gmm",
+      "tenderNumber": "TND-20002",
+      "title": "EU Cross-Border Logistics Optimization",
+      "description": null,
+      "category": "International",
+      "region": "EMEA",
+      "estimatedValue": 2800000,
+      "currency": "USD",
+      "status": "open",
+      "deadline": "2026-10-11T19:42:34.728Z",
+      "createdAt": "2026-09-11T19:42:34.729Z"
+    },
+    {
+      "id": "cmtxd53oo0022ns2ljfjblx6z",
+      "tenderNumber": "TND-20001",
+      "title": "Federal Government AI Supply Chain Platform",
+      "description": null,
+      "category": "Government",
+      "region": "Americas",
+      "estimatedValue": 4200000,
+      "currency": "USD",
+      "status": "open",
+      "deadline": "2026-10-26T19:42:34.728Z",
+      "createdAt": "2026-09-11T19:42:34.728Z"
+    }
+  ]
+}
