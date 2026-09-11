@@ -1,0 +1,101 @@
+name: Process Order Issue
+
+# ====================================================================
+# Phase 2C: GitHub Issues Write Queue
+# ====================================================================
+# When a user creates an issue with title "New Order: ORD-XXXXX" and a
+# JSON body, this workflow:
+#   1. Parses the order JSON from the issue body
+#   2. Appends it to spa/data/orders.json
+#   3. Commits and pushes to main
+#   4. Closes the issue with a confirmation comment
+# The order then appears for ALL visitors within ~2 minutes.
+# ====================================================================
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  process-order:
+    name: Process New Order
+    runs-on: ubuntu-latest
+    if: startsWith(github.event.issue.title, 'New Order: ORD-')
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Parse order JSON and append to orders.json
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+        run: |
+          set -euo pipefail
+          echo "=== Processing order issue: $ISSUE_TITLE ==="
+          JSON_CONTENT=$(echo "$ISSUE_BODY" | sed -n '/```json/,/```/p' | sed '1d;$d' || echo "$ISSUE_BODY")
+          if [ -z "$JSON_CONTENT" ]; then JSON_CONTENT="$ISSUE_BODY"; fi
+          echo "$JSON_CONTENT" | python3 -m json.tool > /dev/null || { echo "Invalid JSON"; exit 1; }
+          ORDER_JSON=$(echo "$JSON_CONTENT" | python3 -c "
+          import json, sys, time, datetime
+          order = json.load(sys.stdin)
+          order['id'] = order.get('id', f\"server_{int(time.time())}\")
+          order['createdAt'] = order.get('createdAt', datetime.datetime.utcnow().isoformat() + 'Z')
+          order['currency'] = order.get('currency', 'USD')
+          order['quantity'] = int(order.get('quantity', 1))
+          order['unitPrice'] = float(order.get('unitPrice', 0))
+          order['trackingNumber'] = order.get('trackingNumber')
+          order['payment'] = order.get('payment')
+          order['_isLocal'] = False
+          print(json.dumps(order))
+          ")
+          ORDERS_FILE="spa/data/orders.json"
+          if [ ! -f "$ORDERS_FILE" ]; then echo '{"orders":[]}' > "$ORDERS_FILE"; fi
+          python3 -c "
+          import json
+          with open('$ORDERS_FILE') as f:
+              data = json.load(f)
+          new_order = json.loads('''$ORDER_JSON''')
+          existing_ids = [o.get('id') for o in data['orders']]
+          if new_order['id'] not in existing_ids:
+              data['orders'].insert(0, new_order)
+              with open('$ORDERS_FILE', 'w') as f:
+                  json.dump(data, f, indent=2)
+              print(f'Added order {new_order[\"orderNumber\"]}')
+          else:
+              print(f'Order already exists')
+          "
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add spa/data/orders.json
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "auto: add order from issue #${{ github.event.issue.number }}"
+            git push
+          fi
+
+      - name: Close issue with confirmation
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body: '✅ **Order processed!**\n\nYour order has been added to the public gallery and will appear in the [Command Center](https://testdemoqwenai2025-creator.github.io/Demo8AISupChn/spa/command-center) within ~2 minutes.\n\nClosing automatically.'
+            });
+            github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              state: 'closed'
+            });
