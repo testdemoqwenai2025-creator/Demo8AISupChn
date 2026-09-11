@@ -1,0 +1,142 @@
+name: Generate AI Document
+
+# ====================================================================
+# Phase 3A: Real AI Document Generation via GitHub Issues
+# ====================================================================
+# When a user creates an issue with title "Generate Doc: <type>" and a
+# prompt in the body, this workflow:
+#   1. Calls z-ai-web-dev-sdk to generate the document
+#   2. Saves the result to spa/data/generated-docs.json
+#   3. Closes the issue with a link to view the document
+# The SPA polls generated-docs.json every 10 seconds and shows the result.
+# ====================================================================
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  generate:
+    name: Generate Document with AI
+    runs-on: ubuntu-latest
+    if: startsWith(github.event.issue.title, 'Generate Doc:')
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install z-ai-web-dev-sdk
+        run: npm install z-ai-web-dev-sdk
+
+      - name: Generate document with AI
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ZAI_CONFIG: ${{ secrets.ZAI_CONFIG }}
+        run: |
+          set -euo pipefail
+          echo "=== Generating document for issue #$ISSUE_NUMBER ==="
+
+          # Extract prompt from issue body (between <prompt> markers or entire body)
+          PROMPT=$(echo "$ISSUE_BODY" | sed -n '/<prompt>/,/<\/prompt>/p' | sed 's/<[^>]*>//g' || echo "$ISSUE_BODY")
+          DOC_TYPE=$(echo "$ISSUE_TITLE" | sed 's/Generate Doc: //')
+
+          # Write ZAI config
+          echo "$ZAI_CONFIG" > .z-ai-config
+
+          # Generate document
+          node -e "
+          const ZAI = require('z-ai-web-dev-sdk').default;
+          (async () => {
+            try {
+              const zai = await ZAI.create();
+              const result = await zai.chat.completions.create({
+                messages: [
+                  { role: 'system', content: 'You are a professional business document generator for AI Supply Chain Advanced Ltd. Generate formal, detailed, well-structured business documents.' },
+                  { role: 'user', content: 'Generate a ' + '${DOC_TYPE}' + ' for the following request:\n\n' + '${PROMPT}' + '\n\nFormat as a formal business document with headers, bullet points, and professional tone.' }
+                ],
+              });
+              const content = result.choices[0]?.message?.content || 'Generation failed';
+              // Save to generated-docs.json
+              const fs = require('fs');
+              const file = 'spa/data/generated-docs.json';
+              let data = { docs: [] };
+              if (fs.existsSync(file)) {
+                data = JSON.parse(fs.readFileSync(file, 'utf-8'));
+              }
+              data.docs.unshift({
+                id: 'doc_' + '${ISSUE_NUMBER}' + '_' + Date.now(),
+                issueNumber: ${ISSUE_NUMBER},
+                type: '${DOC_TYPE}',
+                prompt: '${PROMPT}'.substring(0, 200),
+                content: content,
+                createdAt: new Date().toISOString()
+              });
+              data.docs = data.docs.slice(0, 20);
+              fs.writeFileSync(file, JSON.stringify(data, null, 2));
+              console.log('Document generated successfully');
+            } catch (e) {
+              console.error('Generation failed:', e.message);
+              process.exit(1);
+            }
+          })();
+          "
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add spa/data/generated-docs.json
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "auto: AI document generated from issue #${{ github.event.issue.number }}"
+            git push
+          fi
+
+      - name: Close issue with link
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body: '✅ **Document generated!**\n\nYour AI-generated document is ready. View it in the [Command Center](https://testdemoqwenai2025-creator.github.io/Demo8AISupChn/spa/command-center) → AI Documents → Recent.\n\nClosing automatically.'
+            });
+            github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              state: 'closed'
+            });
+
+      - name: Fallback on failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body: '❌ Document generation failed. The AI service may be unavailable. Please try again later.'
+            });
+            github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              state: 'closed',
+              labels: ['failed']
+            });
