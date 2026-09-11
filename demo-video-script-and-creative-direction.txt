@@ -253,7 +253,7 @@ TEXT OVERLAY:
   "AI Supply Chain Advanced"
   "Command Your Supply Chain"
   "Available 24/7 — No NDA Required"
-  "https://testdemoqwenai2025-creator.github.io/DemoAISupChn7/"
+  "https://testdemoqwenai2025-creator.github.io/Demo8AISupChn/"
 
 MUSIC: Triumphant orchestral finale → resolves to a single sustained note
 
@@ -389,7 +389,7 @@ ALTERNATIVE CUTS:
 ────────────────────────────────────────────────────────────────────────────────
 
 PRIMARY DISTRIBUTION:
-  - Embedded on the public demo site (DemoAISupChn7)
+  - Embedded on the public demo site (Demo8AISupChn)
   - Linked in the README.md
   - Sent directly to investors via email
   - Presented at investor pitch meetings

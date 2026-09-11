@@ -14,7 +14,7 @@
 
   // Detect if we're in a subdirectory (cc-app/) to adjust paths
   var inSubdir = window.location.pathname.indexOf('/cc-app') !== -1;
-  var prefix = inSubdir ? '../' : '/DemoAISupChn7/';
+  var prefix = inSubdir ? '../' : '/Demo8AISupChn/';
 
   // Mark the body so CSS can hide banners on cc-app pages (full-screen
   // dashboard where fixed banners obstruct the sidebar and main content).

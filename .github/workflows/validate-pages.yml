@@ -80,7 +80,7 @@ jobs:
           set -e
           echo "Checking for stale repo references..."
           STALE=0
-          for pattern in "AISupChn6-Advanced" "AISupChn-preview"; do
+          for pattern in "AISupChn7-Advanced" "AISupChn8-Advance"; do
             matches=$(grep -rl "$pattern" --include="*.html" --include="*.js" --include="*.txt" . 2>/dev/null || true)
             if [ -n "$matches" ]; then
               echo "❌ Found stale reference '$pattern' in:"
