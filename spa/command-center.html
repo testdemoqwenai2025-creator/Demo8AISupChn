@@ -1,4 +1,263 @@
-<!DOCTYPE html><!--nqT3HmCx9jTVoJvhNEoJF--><html lang="en" class="dark"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" href="/Demo8AISupChn/cc-app/_next/static/media/797e433ab948586e-s.p.29207c2f.woff2" as="font" crossorigin="" type="font/woff2"/><link rel="preload" href="/Demo8AISupChn/cc-app/_next/static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2" as="font" crossorigin="" type="font/woff2"/><link rel="stylesheet" href="/Demo8AISupChn/cc-app/_next/static/chunks/34d933785a17edf3.css" data-precedence="next"/><link rel="stylesheet" href="/Demo8AISupChn/cc-app/_next/static/chunks/43c28fcc5a2ee99a.css" data-precedence="next"/><link rel="preload" as="script" fetchPriority="low" href="/Demo8AISupChn/cc-app/_next/static/chunks/58c60a5fa6b544da.js"/><meta name="next-size-adjust" content=""/><title>AI Supply Chain Command Center | Enterprise Platform</title><meta name="description" content="Global supply chain operations, tender management &amp; AI automation hub. Real-time risk intelligence, compliance monitoring, and procurement optimization."/><link rel="icon" href="https://z-cdn.chatglm.cn/z-ai/static/logo.svg"/><script>
+<!DOCTYPE html><!--nqT3HmCx9jTVoJvhNEoJF--><html lang="en" class="dark"><head>
+<style>
+/* ===== COMMAND CENTER VISIBILITY OVERRIDE ===== */
+/* Force all content visible — cc-app CSS variables don't resolve without React JS */
+
+:root {
+  --background: #0a0e1a;
+  --foreground: #ffffff;
+  --card: rgba(30, 41, 59, 0.5);
+  --card-foreground: #ffffff;
+  --primary: #10b981;
+  --accent: #06b6d4;
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --border: rgba(255, 255, 255, 0.08);
+  --sidebar: #0f172a;
+  --sidebar-foreground: #ffffff;
+  --sidebar-border: rgba(255, 255, 255, 0.06);
+  --radius: 0.625rem;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  background: #0a0e1a !important;
+  color: #ffffff !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  height: auto !important;
+  overflow: auto !important;
+}
+
+/* Layout containers */
+.flex.h-screen {
+  display: flex !important;
+  height: auto !important;
+  min-height: 100vh !important;
+  overflow: visible !important;
+}
+
+aside.flex-shrink-0 {
+  background: #0f172a !important;
+  border-right: 1px solid rgba(255,255,255,0.06) !important;
+  position: sticky !important;
+  top: 0 !important;
+  height: 100vh !important;
+  overflow-y: auto !important;
+  flex-shrink: 0 !important;
+  z-index: 40 !important;
+}
+
+main.flex-1, main[class*="flex-1"] {
+  flex: 1 !important;
+  display: block !important;
+  overflow: visible !important;
+  height: auto !important;
+  padding: 24px !important;
+}
+
+main > div {
+  overflow: visible !important;
+  height: auto !important;
+  max-height: none !important;
+  display: block !important;
+}
+
+/* Auth bar */
+.cc-auth-bar {
+  display: flex !important;
+  gap: 8px !important;
+  padding: 8px 16px !important;
+  background: rgba(0,0,0,0.3) !important;
+  justify-content: flex-end !important;
+}
+
+.cc-auth-btn {
+  padding: 6px 12px !important;
+  border-radius: 6px !important;
+  font-size: 12px !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  background: transparent !important;
+  color: #fff !important;
+  cursor: pointer !important;
+}
+
+.cc-auth-btn.primary {
+  background: #10b981 !important;
+  border-color: #10b981 !important;
+}
+
+/* Header */
+header[class*="h-14"], header.h-14 {
+  height: 56px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0 24px !important;
+  border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+  background: rgba(15,23,42,0.8) !important;
+}
+
+/* Make ALL text visible */
+* { color: inherit; }
+body, main, div, span, p, h1, h2, h3, h4, h5, h6, li, td, th, label, a, button {
+  color: #e2e8f0 !important;
+}
+h1, h2, h3, h4 { color: #ffffff !important; }
+
+/* Cards — glass morphism */
+.glass, [class*="glass"] {
+  background: rgba(30, 41, 59, 0.5) !important;
+  backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  border-radius: 12px !important;
+  padding: 20px !important;
+  margin-bottom: 16px !important;
+}
+
+/* Grid layouts */
+.grid, [class*="grid-cols"] {
+  display: grid !important;
+  gap: 16px !important;
+}
+.grid-cols-1 { grid-template-columns: 1fr !important; }
+.grid-cols-2 { grid-template-columns: repeat(2, 1fr) !important; }
+.grid-cols-3 { grid-template-columns: repeat(3, 1fr) !important; }
+.grid-cols-4 { grid-template-columns: repeat(4, 1fr) !important; }
+.grid-cols-6 { grid-template-columns: repeat(6, 1fr) !important; }
+[class*="md:grid-cols-2"] { grid-template-columns: repeat(2, 1fr) !important; }
+[class*="md:grid-cols-3"] { grid-template-columns: repeat(3, 1fr) !important; }
+[class*="lg:grid-cols-4"] { grid-template-columns: repeat(4, 1fr) !important; }
+
+/* Flex layouts */
+.flex { display: flex !important; }
+.flex-col { flex-direction: column !important; }
+.flex-wrap { flex-wrap: wrap !important; }
+.items-center { align-items: center !important; }
+.justify-center { justify-content: center !important; }
+.justify-between { justify-content: space-between !important; }
+.gap-2 { gap: 8px !important; }
+.gap-3 { gap: 12px !important; }
+.gap-4 { gap: 16px !important; }
+.gap-6 { gap: 24px !important; }
+
+/* Spacing */
+.p-4 { padding: 16px !important; }
+.p-6 { padding: 24px !important; }
+.p-8 { padding: 32px !important; }
+.px-4 { padding-left: 16px !important; padding-right: 16px !important; }
+.py-2 { padding-top: 8px !important; padding-bottom: 8px !important; }
+.py-3 { padding-top: 12px !important; padding-bottom: 12px !important; }
+.mb-2 { margin-bottom: 8px !important; }
+.mb-4 { margin-bottom: 16px !important; }
+.mb-6 { margin-bottom: 24px !important; }
+.mt-4 { margin-top: 16px !important; }
+
+/* Text sizes */
+.text-xs { font-size: 12px !important; }
+.text-sm { font-size: 14px !important; }
+.text-lg { font-size: 18px !important; }
+.text-xl { font-size: 20px !important; }
+.text-2xl { font-size: 24px !important; }
+.text-3xl { font-size: 30px !important; }
+.text-4xl { font-size: 36px !important; }
+.font-bold { font-weight: 700 !important; }
+.font-semibold { font-weight: 600 !important; }
+
+/* Colors */
+.text-emerald-400, [class*="text-emerald"] { color: #34d399 !important; }
+.text-cyan-400, [class*="text-cyan"] { color: #22d3ee !important; }
+.text-red-400, [class*="text-red"] { color: #f87171 !important; }
+.text-amber-400, [class*="text-amber"] { color: #fbbf24 !important; }
+.text-violet-400, [class*="text-violet"] { color: #a78bfa !important; }
+.text-muted-foreground, [class*="muted"] { color: #94a3b8 !important; }
+.text-white { color: #fff !important; }
+
+/* Badges */
+.badge, [class*="badge"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 2px 8px !important;
+  border-radius: 9999px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+}
+
+/* Buttons */
+button {
+  cursor: pointer !important;
+  padding: 8px 16px !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  background: rgba(255,255,255,0.05) !important;
+  color: #fff !important;
+  font-size: 14px !important;
+}
+button[class*="primary"], [class*="bg-primary"], [class*="bg-emerald"] {
+  background: #10b981 !important;
+  border-color: #10b981 !important;
+}
+
+/* Tables */
+table { width: 100% !important; border-collapse: collapse !important; }
+th, td { padding: 8px 12px !important; text-align: left !important; border-bottom: 1px solid rgba(255,255,255,0.06) !important; }
+th { font-weight: 600 !important; color: #94a3b8 !important; font-size: 12px !important; }
+
+/* Sections */
+section { padding: 24px 0 !important; }
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #34d399, #22d3ee) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* Risk/alert colors */
+[class*="bg-red-500/10"] { background: rgba(239,68,68,0.1) !important; }
+[class*="bg-amber-500/10"] { background: rgba(245,158,11,0.1) !important; }
+[class*="bg-emerald-500/10"] { background: rgba(16,185,129,0.1) !important; }
+[class*="bg-cyan-500/10"] { background: rgba(6,182,212,0.1) !important; }
+[class*="bg-violet-500/10"] { background: rgba(139,92,246,0.1) !important; }
+
+/* Borders */
+[class*="border-emerald"] { border-color: rgba(16,185,129,0.2) !important; }
+[class*="border-cyan"] { border-color: rgba(6,182,212,0.2) !important; }
+[class*="border-red"] { border-color: rgba(239,68,68,0.2) !important; }
+[class*="border-amber"] { border-color: rgba(245,158,11,0.2) !important; }
+
+/* Rounded */
+.rounded-lg { border-radius: 8px !important; }
+.rounded-xl { border-radius: 12px !important; }
+.rounded-2xl { border-radius: 16px !important; }
+.rounded-full { border-radius: 9999px !important; }
+
+/* Width */
+.w-full { width: 100% !important; }
+.w-8 { width: 32px !important; }
+.w-12 { width: 48px !important; }
+.w-60 { width: 240px !important; }
+
+/* Height */
+.h-8 { height: 32px !important; }
+.h-12 { height: 48px !important; }
+.h-14 { height: 56px !important; }
+.h-full { height: 100% !important; }
+
+/* SVGs */
+svg { flex-shrink: 0 !important; }
+
+/* Modals — hidden by default */
+.cc-auth-modal-bg { display: none !important; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #0f172a; }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #475569; }
+</style>
+<meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" href="/Demo8AISupChn/cc-app/_next/static/media/797e433ab948586e-s.p.29207c2f.woff2" as="font" crossorigin="" type="font/woff2"/><link rel="preload" href="/Demo8AISupChn/cc-app/_next/static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2" as="font" crossorigin="" type="font/woff2"/><link rel="stylesheet" href="/Demo8AISupChn/cc-app/_next/static/chunks/34d933785a17edf3.css" data-precedence="next"/><link rel="stylesheet" href="/Demo8AISupChn/cc-app/_next/static/chunks/43c28fcc5a2ee99a.css" data-precedence="next"/><link rel="preload" as="script" fetchPriority="low" href="/Demo8AISupChn/cc-app/_next/static/chunks/58c60a5fa6b544da.js"/><meta name="next-size-adjust" content=""/><title>AI Supply Chain Command Center | Enterprise Platform</title><meta name="description" content="Global supply chain operations, tender management &amp; AI automation hub. Real-time risk intelligence, compliance monitoring, and procurement optimization."/><link rel="icon" href="https://z-cdn.chatglm.cn/z-ai/static/logo.svg"/><script>
               (function() {
                 try {
                   var stored = localStorage.getItem('cc-theme');
