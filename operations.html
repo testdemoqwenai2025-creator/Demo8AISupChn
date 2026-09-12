@@ -151,7 +151,7 @@ body.cc-app-page .side-banner{display:none!important}
     <nav class="cc-topbar-nav">
       <a href="./index.html">Home</a>
       <a href="./about.html">About</a>
-      <a href="./cc-app/">Command Center</a>
+      <a href="./spa/">Command Center</a>
       <a href="./operations.html" class="active">Operations Hub</a>
       <a href="./dashboard.html">Dashboard</a>
       <a href="./intelligence.html">Intelligence</a>
@@ -162,7 +162,7 @@ body.cc-app-page .side-banner{display:none!important}
   </div>
   <div class="cc-topbar-right">
     <button class="cc-mobile-toggle" onclick="document.querySelector('.cc-sidebar').classList.toggle('open')">☰ Modules</button>
-    <button class="cc-topbar-cc" onclick="location.href='./cc-app/'">← Command Center</button>
+    <button class="cc-topbar-cc" onclick="location.href='./spa/'">← Command Center</button>
   </div>
 </div>
 
@@ -322,7 +322,7 @@ body.cc-app-page .side-banner{display:none!important}
       html += '</div>';
     });
     html += '</div>';
-    html += '<p style="text-align:center;color:var(--muted-foreground);font-size:12px;margin-top:24px">Need orders, tenders, AI documents or the command palette? Visit the <a href="./cc-app/" style="color:var(--emerald);font-weight:600">Command Center</a>.</p>';
+    html += '<p style="text-align:center;color:var(--muted-foreground);font-size:12px;margin-top:24px">Need orders, tenders, AI documents or the command palette? Visit the <a href="./spa/" style="color:var(--emerald);font-weight:600">Command Center</a>.</p>';
     html += '</div>';
     main.innerHTML = html;
   }
