@@ -311,6 +311,82 @@ svg { flex-shrink: 0 !important; display: inline-block !important; }
 .transition-colors { transition: color 0.15s, background-color 0.15s !important; }
 .transition-all { transition: all 0.15s !important; }
 .hover\:bg-white\/\[0\.03\]:hover { background: rgba(255,255,255,0.03) !important; }
+
+/* ===== UNIVERSAL CARD VISIBILITY ===== */
+/* Make ALL padded divs visible as cards */
+main div[class*="p-4"], main div[class*="p-6"], main div[class*="p-3"] {
+  background: rgba(30, 41, 59, 0.4) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-radius: 12px !important;
+  margin-bottom: 12px !important;
+}
+
+/* Make grid children visible */
+main .grid > div, main [class*="grid-cols"] > div {
+  background: rgba(30, 41, 59, 0.4) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-radius: 12px !important;
+  padding: 16px !important;
+}
+
+/* Make flex children with gap visible */
+main .flex.gap-4 > div, main .flex.gap-3 > div, main .flex.gap-2 > div {
+  background: rgba(30, 41, 59, 0.4) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-radius: 12px !important;
+  padding: 16px !important;
+}
+
+/* KPI numbers — make them large and visible */
+main div[class*="text-2xl"], main div[class*="text-3xl"], main div[class*="text-4xl"] {
+  font-size: 28px !important;
+  font-weight: 800 !important;
+  margin: 8px 0 !important;
+}
+
+/* Section headings */
+main h2, main h3 {
+  border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+  padding-bottom: 12px !important;
+  margin-bottom: 16px !important;
+}
+
+/* Make sure ALL text is visible */
+main, main * {
+  color: inherit !important;
+}
+main { color: #e2e8f0 !important; }
+main div[class*="text-emerald"] { color: #34d399 !important; }
+main div[class*="text-cyan"] { color: #22d3ee !important; }
+main div[class*="text-red"] { color: #f87171 !important; }
+main div[class*="text-amber"] { color: #fbbf24 !important; }
+main div[class*="text-violet"] { color: #a78bfa !important; }
+main div[class*="text-white"] { color: #fff !important; }
+main div[class*="muted"] { color: #94a3b8 !important; }
+
+/* Ensure sidebar items are visible */
+aside button, aside a {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 8px 12px !important;
+  border-radius: 8px !important;
+  color: #94a3b8 !important;
+  text-decoration: none !important;
+  font-size: 14px !important;
+  width: 100% !important;
+  border: none !important;
+  background: transparent !important;
+  margin-bottom: 4px !important;
+}
+aside button:hover, aside a:hover {
+  background: rgba(255,255,255,0.05) !important;
+  color: #fff !important;
+}
+aside [class*="active"], aside [class*="bg-emerald"] {
+  background: rgba(16,185,129,0.1) !important;
+  color: #34d399 !important;
+}
 </style>
 <meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="next-size-adjust" content=""/><title>AI Supply Chain Command Center | Enterprise Platform</title><meta name="description" content="Global supply chain operations, tender management &amp; AI automation hub. Real-time risk intelligence, compliance monitoring, and procurement optimization."/><link rel="icon" href="https://z-cdn.chatglm.cn/z-ai/static/logo.svg"/><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0"></head><body class="geist_a71539c9-module__T19VSG__variable geist_mono_8d43a2aa-module__8Li5zG__variable antialiased bg-background text-foreground"><div class="cc-auth-bar">
 <button class="cc-auth-btn" onclick="ccAuthOpen('login')">
